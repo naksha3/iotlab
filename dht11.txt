@@ -1,0 +1,36 @@
+#include <SimpleDHT.h>
+int pin=2;
+
+SimpleDHT22 dht22(pin);
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Serial.println("==============");
+  Serial.println("Simple DHt22..");
+
+  Serial.println(SimpleDHTErrSuccess);
+  byte temperature=0;
+  byte humidity=0;
+  int err=SimpleDHTErrSuccess;
+
+  if((err=dht22.read(&temperature,&humidity,NULL))!=SimpleDHTErrSuccess){
+      Serial.print("Read DHT22 failed, err=");
+      Serial.print(SimpleDHTErrCode(err));
+      Serial.println(SimpleDHTErrDuration(err));delay(1000);
+      return;
+  }
+
+  Serial.println("Sample OK:");
+
+  Serial.print((int)temperature);Serial.println("C");
+  Serial.print((int)humidity);Serial.println("H");
+
+  delay(5000);
+  
+}
