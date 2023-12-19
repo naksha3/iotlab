@@ -1,0 +1,32 @@
+#include <LiquidCrystal.h>
+#include<DS3231.h>
+
+DS3231 rtc(SDA,SCL);
+
+LiquidCrystal lcd(12,11,5,4,3,2);
+
+void setup() {
+  // put your setup code here, to run once:
+    lcd.begin(16,2);
+    rtc.setDOW(SUNDAY);
+    rtc.setTimeo(18,50, 35);
+    rtc.setDate(20,12,2023);
+
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+    lcd.setCursor(0,0);
+    lcd.print("Real Time Clock");
+    lcd.setCursor(0,1);
+    lcd.print("Time:");
+    lcd.print(rtc.getTimeStr());
+    delay(3000);
+    lcd.setCursor(0,1);
+    lcd.print("Day:");
+    lcd.print(rtc.getDayStr());
+    lcd.setCursor(0,1);
+    lcd.print("Date:");
+    lcd.print(rtc.getDateStr());
+}
