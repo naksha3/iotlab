@@ -1,0 +1,27 @@
+int potpin=0;
+int ledpin=13;
+int val=0;
+
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(ledpin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  val=analogRead(potpin);
+  Serial.println(val);
+  analogWrite(ledpin,val);
+  delay(10);
+  if(val>100){
+    digitalWrite(ledpin,HIGH);
+    delay(1000);
+  }
+  else{
+    digitalWrite(ledpin,LOW);
+    delay(1000);
+  }
+}
