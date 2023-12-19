@@ -1,0 +1,31 @@
+int red =10;
+int yellow=11;
+int green=13;
+
+
+void setup() {
+    // put your setup code here, to run once:
+  pinMode(red, OUTPUT);
+  pinMode(yellow, OUTPUT);
+  pinMode(green, OUTPUT);
+}
+
+void traffic(int c1,int c2,int c3){
+  digitalWrite(c1, HIGH);
+
+  digitalWrite(c2,LOW);
+ 
+  digitalWrite(c3,LOW);
+ 
+  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  traffic(red,green,yellow);
+  delay(2000);
+  traffic(yellow,green,red);
+  delay(2000);
+  traffic(green,red,yellow);
+  delay(2000);
+}
